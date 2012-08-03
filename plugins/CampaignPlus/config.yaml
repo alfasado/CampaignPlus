@@ -1,0 +1,31 @@
+name: CampaignPlus
+id:   CampaignPlus
+key:  campaignplus
+version: 0.1
+author_link: http://alfasado.net/
+author_name: Alfasado Inc.
+l10n_class: CampaignPlus::L10N
+description: <__trans phrase="Add functions to PowerCMS Campaign plugin.">
+list_actions:
+    campaign: $campaignplus::CampaignPlus::Plugin::list_actions
+applications:
+    cms:
+        methods:
+            export_campaign_info: $campaignplus::CampaignPlus::Plugin::export_campaign_info
+            example_method: $campaignplus::CampaignPlus::Plugin::example_method
+config_settings:
+   RebuildIndexAtSaveCampaign:
+       default: 1
+   RebuildIndexAtSaveCampaignGroup:
+       default: 1
+callbacks:
+    cms_post_save.campaign: $campaignplus::CampaignPlus::Plugin::cms_post_save_campaign
+    cms_post_save.campaigngroup: $campaignplus::CampaignPlus::Plugin::cms_post_save_campaigngroup
+    MT::App::CMS::template_param.edit_campaign: $campaignplus::CampaignPlus::Plugin::edit_campaign_param
+    MT::App::CMS::template_param.edit_campaigngroup: $campaignplus::CampaignPlus::Plugin::edit_campaigngroup_param
+tags:
+    block:
+       FlaggedCampaigns: $campaignplus::CampaignPlus::Plugin::_hdlr_flagged_campaigns
+       IfCampaignFlagged?: $campaignplus::CampaignPlus::Plugin::_hdlr_if_campaign_flagged
+    function:
+       FlaggedCampaignTitle: $campaignplus::CampaignPlus::Plugin::_hdlr_flagged_campaign_title
